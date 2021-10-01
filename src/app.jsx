@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './component/login/login';
 import Main from './component/main/main';
+import "./app.module.css";
 
 const App = (props) => {
   return (

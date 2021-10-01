@@ -1,0 +1,19 @@
+@value makerWhite from '../../common/colors.module.css';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  background: makerWhite;
+  text-align: center;
+  width: 100%;
+  padding: 1em;
+}
+.title{
+  margin-bottom: 0.5em;
+}
+.btn {
+  background-color: makerWhite;
+  height: 2.5em;
+  margin: 0.25em 0 ;
+  border-radius: 0.75em;
+}

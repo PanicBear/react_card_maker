@@ -1,14 +1,18 @@
-import React from 'react';
-import { useHistory } from 'react-router';
+import React, { useEffect } from "react";
+import { useHistory } from "react-router";
+import styles from "./main.module.css";
 
-const Main = (props) => {
+const Main = ({ auth }) => {
   const history = useHistory();
+  useEffect(() => auth.checkCredential(history), [auth, history]);
   return (
     <>
       <h1>Main</h1>
-      <button onClick={() => history.push("/login")}>로그인</button >
+      <button className={styles.btn} onClick={() => auth.resetCredential()}>
+        signOut
+      </button>
     </>
   );
-}
+};
 
 export default Main;

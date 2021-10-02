@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router";
-import Header from "../header/header";
 import Footer from "../footer/footer";
+import Header from "../header/header";
+import LoginModal from "../login-modal/login-modal";
 import styles from "./login.module.css";
-import Section from "../section/section";
 
-const Login = (props) => {
+const Login = ({ auth }) => {
   const history = useHistory();
+  useEffect(() => auth.checkCredential(history), [auth, history]);
   return (
     <div className={styles.layer}>
       <div className={styles.modal}>
         <Header />
-        <Section />
+        <LoginModal auth={auth} />
         <Footer />
         {/* <button onClick={() => history.push("/")}>메인페이지로</button> */}
       </div>

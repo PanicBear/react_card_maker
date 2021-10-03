@@ -1,0 +1,21 @@
+@value makerWhite from '../../common/colors.module.css';
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  background-color: makerWhite;
+}
+.page {
+  width: 100%;
+  padding: 2em 1em;
+}
+.title {
+  text-align: center;
+  padding-bottom: 1em;
+}
+
+@media screen and (max-width: 60em) {
+  .section {
+    flex-direction: column;
+  }
+}

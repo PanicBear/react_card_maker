@@ -1,0 +1,52 @@
+@value makerLightGrey from '../../common/colors.module.css';
+@value makerLightPink from '../../common/colors.module.css';
+@value makerGreen from '../../common/colors.module.css';
+@value makerBlack from '../../common/colors.module.css';
+@value makerWhite from '../../common/colors.module.css';
+@value makerWheat from '../../common/colors.module.css';
+
+.table {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  border: 1px solid makerBlack;
+}
+.row {
+  display: flex;
+  height: 2em;
+}
+.row input {
+  padding-left: 0.5em;
+}
+.row input:focus{
+}
+.row > * {
+  border: 1px solid makerBlack;
+}
+.row > *:focus {
+  outline: none;
+  border: 1px solid makerBlack;
+}
+.flex3 > * {
+  flex: 1 1 33%;
+}
+.flex2 > * {
+  flex: 1 1 50%;
+}
+.flex1 > * {
+  flex: 1 1 100%;
+}
+.btn {
+  font-size: 1.25em;
+  text-align: center;
+}
+.file {
+  background-color: makerWheat;
+}
+.noFile {
+  background-color: makerLightGrey;
+}
+.add {
+  color: makerWhite;
+  background-color: makerGreen;
+}

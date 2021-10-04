@@ -1,0 +1,38 @@
+@value makerWhite from '../../common/colors.module.css';
+@value makerBlack from '../../common/colors.module.css';
+@value makerColorful from '../../common/colors.module.css';
+@value makerWheat from '../../common/colors.module.css';
+@value makerShadow from '../../common/colors.module.css';
+
+.light {
+  background-color: makerWhite;
+}
+.dark {
+  background-color: makerBlack;
+  color: makerWhite;
+}
+.colorful {
+  background: makerColorful;
+  color: makerWhite;
+}
+.card {
+  display: flex;
+  padding: 1em;
+  margin: 1em;
+  box-shadow: 4px 4px 4px  makerShadow;
+  border-radius: 1em;
+}
+.img{
+  border-radius: 50%;
+  width: 8em;
+  height: 8em;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 2em;
+}
+.company{
+  border-bottom: 1px makerWheat solid;
+}

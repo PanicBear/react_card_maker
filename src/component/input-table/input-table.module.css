@@ -4,12 +4,14 @@
 @value makerBlack from '../../common/colors.module.css';
 @value makerWhite from '../../common/colors.module.css';
 @value makerWheat from '../../common/colors.module.css';
+@value makerLightPink from '../../common/colors.module.css';
 
 .table {
   display: flex;
   width: 100%;
   flex-direction: column;
   border: 1px solid makerBlack;
+  margin: 1em 0;
 }
 .row {
   display: flex;
@@ -17,8 +19,6 @@
 }
 .row input {
   padding-left: 0.5em;
-}
-.row input:focus{
 }
 .row > * {
   border: 1px solid makerBlack;
@@ -41,7 +41,7 @@
   text-align: center;
 }
 .file {
-  background-color: makerWheat;
+  background-color: makerLightPink;
 }
 .noFile {
   background-color: makerLightGrey;

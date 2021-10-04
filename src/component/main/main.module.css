@@ -12,7 +12,7 @@
   flex: 1 1 100%;
   justify-content: space-between;
   align-self: stretch;
-  max-height: 86vh;
+  max-height: 86vh; 
   background-color: makerWhite;
 }
 .page {
@@ -23,7 +23,6 @@
 .title {
   text-align: center;
 }
-
 @media screen and (max-width: 60em) {
   .section {
     flex-direction: column;

@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
 import "./app.module.css";
 import Login from "./component/login/login";
 import Main from "./component/main/main";
 
-const App = ({ auth }) => {
+const App = ({ auth, db }) => {
   const [data, setData] = useState([
     {
       name: "Ellie",
@@ -35,6 +35,9 @@ const App = ({ auth }) => {
       photo: null,
     },
   ]);
+  useEffect(() => {
+    // db.R(0);
+  }, [db]);
   return (
     <BrowserRouter>
       <Switch>

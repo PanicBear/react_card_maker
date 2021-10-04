@@ -10,8 +10,8 @@ const Main = ({ data, auth }) => {
   const history = useHistory();
   useEffect(() => auth.checkCredential(history), [auth, history]);
   return (
-    <>
-      <Header />
+    <div className={styles.main}>
+      <Header auth={auth} />
       <section className={styles.section}>
         <div className={styles.page}>
           <div className={styles.title}>
@@ -32,7 +32,7 @@ const Main = ({ data, auth }) => {
         </div>
       </section>
       <Footer />
-    </>
+    </div>
   );
 };
 

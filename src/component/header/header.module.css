@@ -1,6 +1,7 @@
 @value makerWhite from '../../common/colors.module.css';
 @value makerGreen from '../../common/colors.module.css';
 @value makerBlack from '../../common/colors.module.css';
+@value makerLightGrey from '../../common/colors.module.css';
 
 .wrapper {
   display: flex;
@@ -10,7 +11,12 @@
   padding: 0.5em;
 }
 .title {
+  width: 100%;
   justify-self: center;
+  align-self: center;
+}
+.signed{
+  margin-left: 4em;
 }
 .logo {
   width: 3em;
@@ -18,7 +24,7 @@
 .text {
   color: makerWhite;
 }
-.button{
+.logout{
   width: 4em;
   height: 2em;
   color: makerWhite;

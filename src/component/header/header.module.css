@@ -1,15 +1,28 @@
 @value makerWhite from '../../common/colors.module.css';
 @value makerGreen from '../../common/colors.module.css';
+@value makerBlack from '../../common/colors.module.css';
 
-.wrapper{
+.wrapper {
+  display: flex;
   width: 100%;
   background-color: makerGreen;
   text-align: center;
   padding: 0.5em;
 }
-.logo{
+.title {
+  justify-self: center;
+}
+.logo {
   width: 3em;
 }
-.text{
+.text {
   color: makerWhite;
+}
+.button{
+  width: 4em;
+  height: 2em;
+  color: makerWhite;
+  background-color: makerBlack;
+  border: none;
+  border-radius: 0.5em;
 }

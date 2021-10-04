@@ -1,13 +1,24 @@
 @value makerWhite from '../../common/colors.module.css';
 
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 80em;
+  margin: auto;
+}
 .section {
   display: flex;
+  flex: 1 1 100%;
   justify-content: space-between;
+  align-self: stretch;
+  max-height: 86vh;
   background-color: makerWhite;
 }
 .page {
   width: 100%;
   padding: 2em 1em;
+  overflow-y: auto;
 }
 .title {
   text-align: center;

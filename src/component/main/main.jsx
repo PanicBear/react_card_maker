@@ -8,13 +8,14 @@ import styles from "./main.module.css";
 
 const Main = ({ data, setData, auth, db }) => {
   const history = useHistory();
+  const dataEntries = data && Object.keys(data).length ? Object.entries(data) : null;
   useEffect(() => {
     auth.getCurrentUser() ?? history.push('/login')
-  }, [auth, history]);
+  }, [auth, history])
   useEffect(() => {
     const currentUser = auth.getCurrentUser();
-    currentUser && db.R(setData, currentUser.uid);
-  }, [])
+    currentUser && db.R(currentUser.uid, setData,);
+  }, [auth, setData, db])
   return (
     <div className={styles.main}>
       <Header auth={auth} />
@@ -23,18 +24,24 @@ const Main = ({ data, setData, auth, db }) => {
           <div className={styles.title}>
             <h1>Card Maker</h1>
           </div>
-          {data.map((el, index) => {
-            return <InputTable key={`InputTable${index}`} auth={auth} data={el} db={db} />;
-          })}
-          <InputTable auth={auth} data={null} db={db} />
+          {
+            dataEntries && dataEntries.map((entry) => {
+              const [key, value] = entry;
+              return <InputTable key={`InputTable-${key}`} id={key} auth={auth} data={value} db={db} />;
+            })
+          }
+          <InputTable auth={auth} id={null} data={null} db={db} />
         </div>
         <div className={styles.page}>
           <div className={styles.title}>
             <h1>Card Preview</h1>
           </div>
-          {data.map((el, index) => (
-            <Card key={`Card${index}`} data={el} />
-          ))}
+          {
+            dataEntries && dataEntries.map((entry) => {
+              const [key, value] = entry;
+              return (<Card key={`Card-${key}`} data={value} />)
+            })
+          }
         </div>
       </section>
       <Footer />

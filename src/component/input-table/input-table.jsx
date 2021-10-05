@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { memo } from "react";
 import styles from "./input-table.module.css";
 
-const InputTable = ({ auth, data, db }) => {
+const InputTable = memo(({ auth, id, data, db }) => {
   const name = data ? data.name : null;
   const company = data ? data.company : null;
   const color = data ? data.color : null;
@@ -26,28 +26,54 @@ const InputTable = ({ auth, data, db }) => {
       email: emailRef.current.value,
       message: messageRef.current.value,
     }
-    // db.C()
+    value.name && value.company &&
+      db.C(auth.getCurrentUser().uid, value)
+        .then(() => {
+          nameRef.current.value = "";
+          companyRef.current.value = "";
+          colorRef.current.value = "Light";
+          titleRef.current.value = "";
+          emailRef.current.value = "";
+          messageRef.current.value = "";
+        });
   }
-  const onDelete = () => {
-    console.log("onDelete");
+  const onUpdate = () => {
+    const value = {
+      name: nameRef.current.value,
+      company: companyRef.current.value,
+      color: colorRef.current.value,
+      title: titleRef.current.value,
+      email: emailRef.current.value,
+      message: messageRef.current.value,
+    }
+    // update 아닌 set을 사용하기 때문에
+    // id 체크없이 이름, 회사 작성하면 id null로 create됨
+    id && value.name && value.company &&
+      db.U(auth.getCurrentUser().uid, value, id)
+    /* .then(() => {
+      console.log("update");
+    }); */
   }
+  const onDelete = () =>
+    db.D(auth.getCurrentUser().uid, id)
+  // .then(console.log);
   return (
     <div className={styles.table}>
       <div className={`${styles.row} ${styles.flex3}`}>
-        <input ref={nameRef} type="text" placeholder="Name" defaultValue={name} />
-        <input ref={companyRef} type="text" placeholder="Company" defaultValue={company} />
-        <select ref={colorRef} name="color" defaultValue={color ?? "Light"}>
+        <input ref={nameRef} type="text" placeholder="Name" defaultValue={name} onChange={onUpdate} />
+        <input ref={companyRef} type="text" placeholder="Company" defaultValue={company} onChange={onUpdate} />
+        <select ref={colorRef} name="color" defaultValue={color ?? "Light"} onChange={onUpdate}>
           <option value="Light">Light</option>
           <option value="Dark">Dark</option>
           <option value="Colorful">Colorful</option>
         </select>
       </div>
       <div className={`${styles.row} ${styles.flex2}`}>
-        <input ref={titleRef} type="text" placeholder="Title" defaultValue={title} />
-        <input ref={emailRef} type="text" placeholder="Email" defaultValue={email} />
+        <input ref={titleRef} type="text" placeholder="Title" defaultValue={title} onChange={onUpdate} />
+        <input ref={emailRef} type="text" placeholder="Email" defaultValue={email} onChange={onUpdate} />
       </div>
       <div className={`${styles.row} ${styles.flex1}`}>
-        <input ref={messageRef} type="text" placeholder="Message" defaultValue={message} />
+        <input ref={messageRef} type="text" placeholder="Message" defaultValue={message} onChange={onUpdate} />
       </div>
       <div className={`${styles.row} ${styles.flex2}`}>
         <div className={`${styles.btn} ${photo ? styles.file : styles.noFile}`}>
@@ -59,5 +85,5 @@ const InputTable = ({ auth, data, db }) => {
       </div>
     </div>
   );
-};
+});
 export default InputTable;

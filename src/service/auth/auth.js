@@ -1,6 +1,6 @@
 import {
   getAuth,
-  getRedirectResult,
+  // getRedirectResult,
   GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,

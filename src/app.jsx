@@ -5,7 +5,7 @@ import Login from "./component/login/login";
 import Main from "./component/main/main";
 
 const App = ({ auth, db }) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
   return (
     <BrowserRouter>
       <Switch>

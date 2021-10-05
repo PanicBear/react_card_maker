@@ -1,4 +1,4 @@
-import { getDatabase, onValue, ref } from "firebase/database";
+import { getDatabase, onValue, set, ref } from "firebase/database";
 import Firebase from "../firebase";
 
 class DB {
@@ -8,16 +8,14 @@ class DB {
   getDatabase = () => {
     return this.db;
   };
-  // C = (input) => {
-  //   const ref = null;
-  //   const value = {...input};
-  //   return set(ref,value)
-  // }
-  R = (index) => {
-    const testRef = ref(this.db, `card/${index}`);
-    onValue(testRef, (snapshot)=>{
-      console.log(snapshot.val());
-    })
+  C = (uid, value) => {
+    set(ref(this.db, `card/${uid}`), value);
+  };
+  R = (setData) => {
+    const testRef = ref(this.db, `card/`);
+    onValue(testRef, (snapshot) => {
+      setData(snapshot.val());
+    });
   };
   U = () => {};
   D = () => {};

@@ -7,7 +7,12 @@ import styles from "./login.module.css";
 
 const Login = ({ auth }) => {
   const history = useHistory();
-  useEffect(() => auth.checkCredential(history), [auth, history]);
+  useEffect(
+    () => {
+      auth.getCurrentUser() && history.push('/');
+      auth.checkCredential(history);
+    }, [auth, history]
+  );
   return (
     <div className={styles.layer}>
       <div className={styles.modal}>

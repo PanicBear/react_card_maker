@@ -6,9 +6,11 @@ import Header from "../header/header";
 import InputTable from "../input-table/input-table";
 import styles from "./main.module.css";
 
-const Main = ({ data, auth }) => {
+const Main = ({ data, auth, db }) => {
   const history = useHistory();
-  useEffect(() => auth.checkCredential(history), [auth, history]);
+  useEffect(() => {
+    auth.getCurrentUser() ?? history.push('/login')
+  }, [auth, history]);
   return (
     <div className={styles.main}>
       <Header auth={auth} />
@@ -18,9 +20,9 @@ const Main = ({ data, auth }) => {
             <h1>Card Maker</h1>
           </div>
           {data.map((el, index) => {
-            return <InputTable key={`InputTable${index}`} data={el} />;
+            return <InputTable key={`InputTable${index}`} auth={auth} data={el} db={db} />;
           })}
-          <InputTable data={null} />
+          <InputTable auth={auth} data={null} db={db} />
         </div>
         <div className={styles.page}>
           <div className={styles.title}>

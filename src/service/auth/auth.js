@@ -37,7 +37,12 @@ class Auth {
       }
     });
   };
-  getCredential = () => getRedirectResult(this.auth);
-  resetCredential = () => signOut(this.auth);
+  getCurrentUser = () => {
+    return this.auth.currentUser;
+  };
+  // getCredential = () => getRedirectResult(this.auth);
+  resetCredential = () => {
+    signOut(this.auth);
+  };
 }
 export default Auth;

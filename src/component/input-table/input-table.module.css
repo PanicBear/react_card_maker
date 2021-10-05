@@ -43,6 +43,9 @@
 .file {
   background-color: makerLightPink;
 }
+.fileInput {
+  display: none;
+}
 .noFile {
   background-color: makerLightGrey;
 }

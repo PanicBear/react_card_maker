@@ -11,8 +11,8 @@ class DB {
   C = (uid, value) => {
     set(ref(this.db, `card/${uid}`), value);
   };
-  R = (setData) => {
-    const testRef = ref(this.db, `card/`);
+  R = (setData, uid) => {
+    const testRef = ref(this.db, `card/${uid}`);
     onValue(testRef, (snapshot) => {
       setData(snapshot.val());
     });

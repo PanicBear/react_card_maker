@@ -6,11 +6,15 @@ import Header from "../header/header";
 import InputTable from "../input-table/input-table";
 import styles from "./main.module.css";
 
-const Main = ({ data, auth, db }) => {
+const Main = ({ data, setData, auth, db }) => {
   const history = useHistory();
   useEffect(() => {
     auth.getCurrentUser() ?? history.push('/login')
   }, [auth, history]);
+  useEffect(() => {
+    const currentUser = auth.getCurrentUser();
+    currentUser && db.R(setData, currentUser.uid);
+  }, [])
   return (
     <div className={styles.main}>
       <Header auth={auth} />

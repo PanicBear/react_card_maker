@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./app.module.css";
 import Login from "./component/login/login";
@@ -13,7 +13,7 @@ const App = ({ auth, db }) => {
           <Login auth={auth} />
         </Route>
         <Route>
-          <Main data={data} auth={auth} db={db} path={["/", "/main"]} exact />
+          <Main data={data} setData={setData} auth={auth} db={db} path={["/", "/main"]} exact />
         </Route>
       </Switch>
     </BrowserRouter>

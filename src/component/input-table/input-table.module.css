@@ -40,11 +40,11 @@
   font-size: 1.25em;
   text-align: center;
 }
-.file {
-  background-color: makerLightPink;
-}
 .fileInput {
   display: none;
+}
+.file {
+  background-color: makerLightPink;
 }
 .noFile {
   background-color: makerLightGrey;

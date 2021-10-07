@@ -1,14 +1,14 @@
 import React, { memo } from "react";
 import styles from "./input-table.module.css";
 
-const InputTable = memo(({ auth, id, data, db }) => {
+const InputTable = memo(({ auth, id, data, db, cloudinary }) => {
   const name = data ? data.name : null;
   const company = data ? data.company : null;
   const color = data ? data.color : null;
   const title = data ? data.title : null;
   const email = data ? data.email : null;
   const message = data ? data.message : null;
-  const photo = data ? data.photo : null;
+  const photoData = data ? data.photo : null;
 
   const nameRef = React.useRef();
   const companyRef = React.useRef();
@@ -16,7 +16,11 @@ const InputTable = memo(({ auth, id, data, db }) => {
   const titleRef = React.useRef();
   const emailRef = React.useRef();
   const messageRef = React.useRef();
-  // const photoRef = React.useRef();
+  const photoRef = React.useRef();
+
+  const onFileNameClick = () => {
+    photoRef.current.click();
+  }
   const onAdd = () => {
     const value = {
       name: nameRef.current.value,
@@ -57,6 +61,19 @@ const InputTable = memo(({ auth, id, data, db }) => {
   const onDelete = () =>
     db.D(auth.getCurrentUser().uid, id)
   // .then(console.log);
+  const uploadImage = (photo) => {
+    const value = {
+      name: nameRef.current.value,
+      company: companyRef.current.value,
+      color: colorRef.current.value,
+      title: titleRef.current.value,
+      email: emailRef.current.value,
+      message: messageRef.current.value,
+      photo: photo
+    }
+    id && value.name && value.company &&
+      db.U(auth.getCurrentUser().uid, value, id)
+  }
   return (
     <div className={styles.table}>
       <div className={`${styles.row} ${styles.flex3}`}>
@@ -76,8 +93,11 @@ const InputTable = memo(({ auth, id, data, db }) => {
         <input ref={messageRef} type="text" placeholder="Message" defaultValue={message} onChange={onUpdate} />
       </div>
       <div className={`${styles.row} ${styles.flex2}`}>
-        <div className={`${styles.btn} ${photo ? styles.file : styles.noFile}`}>
-          {photo ? photo : "No File"}
+        <div className={`${styles.btn} ${photoData ? styles.file : styles.noFile}`} onClick={onFileNameClick}>
+          {photoData ? photoData.original_filename : "No File"}
+          <input ref={photoRef} className={styles.fileInput} type="file" name="photo" onChange={() => {
+            cloudinary.upload(photoRef.current.files[0]).then(uploadImage);
+          }} />
         </div>
         <div className={`${styles.btn} ${styles.add}`} onClick={data ? onDelete : onAdd}>
           {data ? "Delete" : "Add"}

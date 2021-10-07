@@ -28,7 +28,7 @@ const Card = ({ data }) => {
       <div className={styles.img}>
         <img
           className={styles.img}
-          src={photo ?? "./images/default_logo.png"}
+          src={photo && photo.secure_url}
           alt="face"
         />
       </div>

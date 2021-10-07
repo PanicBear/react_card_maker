@@ -6,7 +6,7 @@ import Header from "../header/header";
 import InputTable from "../input-table/input-table";
 import styles from "./main.module.css";
 
-const Main = ({ data, setData, auth, db }) => {
+const Main = ({ data, setData, auth, db, cloudinary }) => {
   const history = useHistory();
   const dataEntries = data && Object.keys(data).length ? Object.entries(data) : null;
   useEffect(() => {
@@ -27,10 +27,10 @@ const Main = ({ data, setData, auth, db }) => {
           {
             dataEntries && dataEntries.map((entry) => {
               const [key, value] = entry;
-              return <InputTable key={`InputTable-${key}`} id={key} auth={auth} data={value} db={db} />;
+              return <InputTable key={`InputTable-${key}`} id={key} auth={auth} data={value} db={db} cloudinary={cloudinary} />;
             })
           }
-          <InputTable auth={auth} id={null} data={null} db={db} />
+          <InputTable auth={auth} id={null} data={null} db={db} cloudinary={cloudinary} />
         </div>
         <div className={styles.page}>
           <div className={styles.title}>

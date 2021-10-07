@@ -4,7 +4,7 @@ import "./app.module.css";
 import Login from "./component/login/login";
 import Main from "./component/main/main";
 
-const App = ({ auth, db }) => {
+const App = ({ auth, db, cloudinary }) => {
   const [data, setData] = useState({});
   return (
     <BrowserRouter>
@@ -13,7 +13,7 @@ const App = ({ auth, db }) => {
           <Login auth={auth} />
         </Route>
         <Route>
-          <Main data={data} setData={setData} auth={auth} db={db} path={["/", "/main"]} exact />
+          <Main data={data} setData={setData} auth={auth} db={db} cloudinary={cloudinary} path={["/", "/main"]} exact />
         </Route>
       </Switch>
     </BrowserRouter>
